@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupervisorCalc", "SupervisorCalc\SupervisorCalc.csproj", "{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {841406A0-49AF-4960-9A54-4B1D05558564}
+	EndGlobalSection
+EndGlobal
