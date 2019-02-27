@@ -35,8 +35,8 @@ namespace SupervisorCalc
 
         public override string ToString()
         {
-            return "Error = " + Error.ToString("F2") +
-                "%; R1 = " + RToString(R1) +
+            return "Error = " + (Error * 1000).ToString("F2") +
+                "mV; R1 = " + RToString(R1) +
                 "; R2 = " + RToString(R2) +
                 "; R3 = " + RToString(R3);
         }
@@ -45,6 +45,7 @@ namespace SupervisorCalc
     public class ResultList: List<CalcResult>
     {
         int MaxResults = 10;
+        double MaxError = double.MaxValue;
 
         public ResultList(int maxResults = 10)
         {
@@ -59,10 +60,23 @@ namespace SupervisorCalc
 
         public void AddResult(CalcResult res)
         {
+            if (res.Error > MaxError)
+                return;
             Add(res);
             Sort();
             if (Count > MaxResults)
+            {
                 RemoveAt(Count - 1);
+                MaxError = this[Count - 1].Error;
+            }
+        }
+
+        public void AddResult(double r1, double r2, double r3, double  dV1, double dV2)
+        {
+            double error = Math.Abs((Math.Abs(dV1) > Math.Abs(dV2)) ? (dV1) : (dV2));
+            if (error > MaxError)
+                return;
+            AddResult(new CalcResult(r1, r2, r3, error));
         }
     }
 }

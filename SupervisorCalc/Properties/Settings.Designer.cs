@@ -255,19 +255,19 @@ namespace SupervisorCalc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string minV {
+        [global::System.Configuration.DefaultSettingValueAttribute("4.75")]
+        public string MinV {
             get {
-                return ((string)(this["minV"]));
+                return ((string)(this["MinV"]));
             }
             set {
-                this["minV"] = value;
+                this["MinV"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5.25")]
         public string MaxV {
             get {
                 return ((string)(this["MaxV"]));
@@ -279,7 +279,7 @@ namespace SupervisorCalc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public string MinI {
             get {
                 return ((string)(this["MinI"]));
@@ -291,7 +291,7 @@ namespace SupervisorCalc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string MaxI {
             get {
                 return ((string)(this["MaxI"]));

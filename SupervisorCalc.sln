@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupervisorCalc", "SupervisorCalc\SupervisorCalc.csproj", "{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{66D2201F-5459-48EE-A10A-F501DE5408FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC4C97FC-3DED-4A00-BEB7-9FFCDCA4130E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

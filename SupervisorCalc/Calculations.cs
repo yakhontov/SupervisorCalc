@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace SupervisorCalc
 {
-
     class Calculations
     {
         public double MinU, MaxU, MinI, MaxI;

@@ -99,6 +99,9 @@ namespace SupervisorCalc
                     !double.TryParse(minItb.Text.Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator), out tp.MinI) ||
                     !double.TryParse(maxItb.Text.Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator), out tp.MaxI))
                     return;
+                // Переводим и миллиамперов в амперы
+                tp.MinI /= 1000;
+                tp.MaxI /= 1000;
                 CalcResWorker.RunWorkerAsync(tp);
                 btnRunStop.Text = "Stop calculate";
             }
@@ -106,12 +109,13 @@ namespace SupervisorCalc
 
         private void CalcResWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            calcPB.Value = e.ProgressPercentage;
+
             if (e.UserState == null)
                 return;
-
-            ThreadParameters tp = (ThreadParameters)e.UserState;
+            ResultList rl = (ResultList)e.UserState;
             resultsTb.Clear();
-            foreach(CalcResult c in tp.Results)
+            foreach(CalcResult c in rl)
             {
                 resultsTb.Text += c.ToString() + "\r\n";
             }
@@ -119,6 +123,7 @@ namespace SupervisorCalc
 
         private void CalcResWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            calcPB.Value = 0;
             btnRunStop.Text = "Calculate";
         }
 
@@ -128,37 +133,81 @@ namespace SupervisorCalc
                 return;
 
             ThreadParameters tp = (ThreadParameters)e.Argument;
+            ResistorSeries resistors = tp.Resistors;
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
-
             double
                 minU = tp.MinU,
                 maxU = tp.MaxU,
                 minI = tp.MinI,
                 maxI = tp.MaxI,
-                minR = minU / minI,
-                maxR = maxU / maxI,
-                R1, R2, R3, I1, I2, I3;
+                // Исходя из допустимого тока посчитали минимальное и максимальное сопротивление цепочки
+                // Минимальное сопротивление всего делителя из 3-х резисторов исходя из заданного тока и контролируемого напряжения
+                minR = minU / maxI,
+                // Максимальное сопротивление всего делителя из 3-х резисторов исходя из заданного тока и контролируемого напряжения
+                maxR = maxU / minI;
 
-                
+            // Индекс ближайшего меньшего по номиналу резистора
+            int maxR1id = resistors.FindLowerId(maxR);
+            double maxR1 = resistors[maxR1id];
 
-            //c.Resistors.Find()
-            
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-
-            for (; ; )
+            // В переборе первого резистора нет смысла выходить за пределы максимального сопротивления,
+            // т.к. в противном случае общее сопротивление цепочки окажется выше максимального
+            for(int R1id = 0; R1id <= maxR1id; R1id++)
             {
+                // Номинал текущего резистора R1
+                double R1 = resistors[R1id];
+
+                // Максимальное сопротивление второго резистора не может быть больше максимального
+                // сопротивления цепочки минус сопротивление первого резистора,
+                // в противном случае общее сопротивление цепочки окажется выше максимального
+                int maxR2id = resistors.FindLowerId(maxR - R1);
+
+                for(int R2id = 0; R2id<=maxR2id; R2id++)
+                {
+                    // Номинал текущего резистора R2
+                    double R2 = resistors[R2id];
+
+                    // Максимальное сопротивление третьего резистора не может быть больше максимального
+                    // сопротивления цепочки минус сопротивление первого и второго резисторов,
+                    // в противном случае общее сопротивление цепочки окажется выше максимального
+                    int maxR3id = resistors.FindLowerId(maxR - R1 - R2);
+
+                    // Минимальное сопротивление третьего резистора не может быть ниже минимального
+                    // сопротивления цепочки минус сопротивление первого и второго резисторов
+                    int minR3id = resistors.FindGreaterId(minR - R1 - R2);
+
+                    for(int R3id = minR3id; R3id<=maxR3id; R3id++)
+                    {
+                        // Номинал текущего резистора R2
+                        double R3 = resistors[R3id];
+
+                        // Общее сопротивление цепочки для данных резисторов
+                        double R = R1 + R2 + R3;
+
+                        // Супервизор срабатывает при повышении напряжения на R3 выше 0,5В, ток на R3 при этом составялет:
+                        double Ih = 0.5 / R3;
+                        // При этом токе напряжение на всей цепочке составляет:
+                        double Uh = Ih * R;
+                        // Супервизор срабатывает при понижении напряжения на (R2+R3) ниже 0,5В, ток на (R2+R3) при этом составялет:
+                        double Il = 0.5 / (R2 + R3);
+                        // При этом токе напряжение на всей цепочке составляет:
+                        double Ul = Il * R;
+                        // Добавляем расчеты в список, внутри уже разберемся нужен этот результат или нет
+                        tp.Results.AddResult(R1, R2, R3, minU - Ul, maxU - Uh);
+                    }
+                }
+
+                ///////////////////////////////////////
                 if (CalcResWorker.CancellationPending)
                 {
                     e.Cancel = true;
                     break;
                 }
-
-
-                System.Threading.Thread.Sleep(500);
-                //calc.Results.AddResult(new CalcResult(5000, 300, 70, 8));
-                //CalcResWorker.ReportProgress(0, new ResultList(calc.Results));
+                CalcResWorker.ReportProgress(100 * R1id / maxR1id, new ResultList(tp.Results));
+                ///////////////////////////////////////
             }
+            //////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 }

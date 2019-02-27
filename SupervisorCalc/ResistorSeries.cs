@@ -43,7 +43,7 @@ namespace SupervisorCalc
             Sort();
         }
 
-        int FindLowerI(double r)
+        public int FindLowerId(double r)
         {
             int i = BinarySearch(r);
             if (i < 0)
@@ -52,18 +52,18 @@ namespace SupervisorCalc
                 return i;
         }
 
-        int FindGreaterI(double r)
+        public int FindGreaterId(double r)
         {
             int i = BinarySearch(r);
             if (i < 0)
-                return ~i - 1;
+                return ~i;
             else
                 return i;
         }
 
-        double FindLowerR(double r) { return this[FindLowerI(r)]; }
+        public double FindLowerR(double r) { return this[FindLowerId(r)]; }
 
-        double FindGreaterR(double r) { return this[FindGreaterI(r)]; }
+        public double FindGreaterR(double r) { return this[FindGreaterId(r)]; }
     }
 
     class ThreadParameters
