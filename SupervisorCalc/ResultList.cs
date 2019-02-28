@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 
 namespace SupervisorCalc
 {
@@ -24,7 +24,7 @@ namespace SupervisorCalc
             return Error.CompareTo(other.Error);
         }
 
-        private string RToString(double r)
+        public static string RToString(double r)
         {
             if (r < 1000)
                 return r.ToString("F"+(3-(int)Math.Log10(r)).ToString()) + "Ohm";
@@ -40,6 +40,21 @@ namespace SupervisorCalc
                 "; R2 = " + RToString(R2) +
                 "; R3 = " + RToString(R3);
         }
+
+        public string GetRangeV()
+        {
+            double R = R1 + R2 + R3;
+
+            // Супервизор срабатывает при повышении напряжения на R3 выше 0,5В, ток на R3 при этом составялет:
+            double Ih = 0.5 / R3;
+            // При этом токе напряжение на всей цепочке составляет:
+            double Uh = Ih * R;
+            // Супервизор срабатывает при понижении напряжения на (R2+R3) ниже 0,5В, ток на (R2+R3) при этом составялет:
+            double Il = 0.5 / (R2 + R3);
+            // При этом токе напряжение на всей цепочке составляет:
+            double Ul = Il * R;
+            return Ul.ToString("F3") + "..." + Uh.ToString("F3");
+        }
     }
 
     public class ResultList: List<CalcResult>
@@ -47,7 +62,7 @@ namespace SupervisorCalc
         int MaxResults = 10;
         double MaxError = double.MaxValue;
 
-        public ResultList(int maxResults = 10)
+        public ResultList(int maxResults = 20)
         {
             MaxResults = maxResults;
         }

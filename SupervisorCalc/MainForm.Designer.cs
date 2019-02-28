@@ -45,7 +45,10 @@
             this.hiVoltTb = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.resultsTb = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.grid1 = new SourceGrid.Grid();
+            this.calcPB = new System.Windows.Forms.ProgressBar();
             this.btnRunStop = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -61,9 +64,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
-            this.snake1 = new SupervisorCalc.Snake();
             this.CalcResWorker = new System.ComponentModel.BackgroundWorker();
-            this.calcPB = new System.Windows.Forms.ProgressBar();
+            this.snake1 = new SupervisorCalc.Snake();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -252,8 +254,10 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.grid1);
             this.tabPage3.Controls.Add(this.calcPB);
-            this.tabPage3.Controls.Add(this.resultsTb);
             this.tabPage3.Controls.Add(this.btnRunStop);
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Controls.Add(this.label10);
@@ -271,18 +275,54 @@
             this.tabPage3.Text = "Calc resistors";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // resultsTb
+            // label12
             // 
-            this.resultsTb.Location = new System.Drawing.Point(3, 143);
-            this.resultsTb.Multiline = true;
-            this.resultsTb.Name = "resultsTb";
-            this.resultsTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.resultsTb.Size = new System.Drawing.Size(410, 495);
-            this.resultsTb.TabIndex = 16;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(8, 97);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(107, 20);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Circuit current";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(8, 3);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(136, 20);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Controlled voltage";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // grid1
+            // 
+            this.grid1.ColumnsCount = 6;
+            this.grid1.DefaultWidth = 200;
+            this.grid1.EnableSort = true;
+            this.grid1.FixedRows = 1;
+            this.grid1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.grid1.Location = new System.Drawing.Point(3, 196);
+            this.grid1.Name = "grid1";
+            this.grid1.OptimizeMode = SourceGrid.CellOptimizeMode.ForRows;
+            this.grid1.SelectionMode = SourceGrid.GridSelectionMode.Row;
+            this.grid1.Size = new System.Drawing.Size(410, 447);
+            this.grid1.TabIndex = 18;
+            this.grid1.TabStop = true;
+            this.grid1.ToolTipText = "";
+            // 
+            // calcPB
+            // 
+            this.calcPB.Location = new System.Drawing.Point(266, 53);
+            this.calcPB.Name = "calcPB";
+            this.calcPB.Size = new System.Drawing.Size(144, 23);
+            this.calcPB.TabIndex = 17;
             // 
             // btnRunStop
             // 
-            this.btnRunStop.Location = new System.Drawing.Point(264, 39);
+            this.btnRunStop.Location = new System.Drawing.Point(264, 148);
             this.btnRunStop.Name = "btnRunStop";
             this.btnRunStop.Size = new System.Drawing.Size(144, 23);
             this.btnRunStop.TabIndex = 15;
@@ -294,29 +334,29 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(132, 76);
+            this.label9.Location = new System.Drawing.Point(132, 117);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 20);
+            this.label9.Size = new System.Drawing.Size(79, 20);
             this.label9.TabIndex = 14;
-            this.label9.Text = "max, mA";
+            this.label9.Text = "I max, mA";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(8, 76);
+            this.label10.Location = new System.Drawing.Point(8, 117);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 20);
+            this.label10.Size = new System.Drawing.Size(75, 20);
             this.label10.TabIndex = 13;
-            this.label10.Text = "min, mA";
+            this.label10.Text = "I min, mA";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // maxItb
             // 
             this.maxItb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SupervisorCalc.Properties.Settings.Default, "MaxI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.maxItb.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.maxItb.Location = new System.Drawing.Point(136, 99);
+            this.maxItb.Location = new System.Drawing.Point(136, 140);
             this.maxItb.Name = "maxItb";
             this.maxItb.Size = new System.Drawing.Size(122, 38);
             this.maxItb.TabIndex = 12;
@@ -327,7 +367,7 @@
             // 
             this.minItb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SupervisorCalc.Properties.Settings.Default, "MinI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.minItb.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.minItb.Location = new System.Drawing.Point(8, 99);
+            this.minItb.Location = new System.Drawing.Point(8, 140);
             this.minItb.Name = "minItb";
             this.minItb.Size = new System.Drawing.Size(122, 38);
             this.minItb.TabIndex = 11;
@@ -338,29 +378,29 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(132, 3);
+            this.label8.Location = new System.Drawing.Point(132, 23);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 20);
+            this.label8.Size = new System.Drawing.Size(73, 20);
             this.label8.TabIndex = 10;
-            this.label8.Text = "max, V";
+            this.label8.Text = "U max, V";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(8, 3);
+            this.label7.Location = new System.Drawing.Point(8, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 20);
+            this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 9;
-            this.label7.Text = "min, V";
+            this.label7.Text = "U min, V";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // maxUtb
             // 
             this.maxUtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SupervisorCalc.Properties.Settings.Default, "MaxV", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.maxUtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.maxUtb.Location = new System.Drawing.Point(136, 26);
+            this.maxUtb.Location = new System.Drawing.Point(136, 46);
             this.maxUtb.Name = "maxUtb";
             this.maxUtb.Size = new System.Drawing.Size(122, 38);
             this.maxUtb.TabIndex = 3;
@@ -371,7 +411,7 @@
             // 
             this.minUtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SupervisorCalc.Properties.Settings.Default, "MinV", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.minUtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.minUtb.Location = new System.Drawing.Point(8, 26);
+            this.minUtb.Location = new System.Drawing.Point(8, 46);
             this.minUtb.Name = "minUtb";
             this.minUtb.Size = new System.Drawing.Size(122, 38);
             this.minUtb.TabIndex = 2;
@@ -412,9 +452,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.snake1);
             this.tabPage2.Controls.Add(this.linkLabel1);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.snake1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -439,10 +479,18 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(8, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(318, 130);
+            this.label6.Size = new System.Drawing.Size(334, 91);
             this.label6.TabIndex = 0;
             this.label6.Text = resources.GetString("label6.Text");
             this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // CalcResWorker
+            // 
+            this.CalcResWorker.WorkerReportsProgress = true;
+            this.CalcResWorker.WorkerSupportsCancellation = true;
+            this.CalcResWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.CalcResWorker_DoWork);
+            this.CalcResWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.CalcResWorker_ProgressChanged);
+            this.CalcResWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.CalcResWorker_RunWorkerCompleted);
             // 
             // snake1
             // 
@@ -454,21 +502,6 @@
             this.snake1.TabIndex = 1;
             this.snake1.Visible = false;
             // 
-            // CalcResWorker
-            // 
-            this.CalcResWorker.WorkerReportsProgress = true;
-            this.CalcResWorker.WorkerSupportsCancellation = true;
-            this.CalcResWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.CalcResWorker_DoWork);
-            this.CalcResWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.CalcResWorker_ProgressChanged);
-            this.CalcResWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.CalcResWorker_RunWorkerCompleted);
-            // 
-            // calcPB
-            // 
-            this.calcPB.Location = new System.Drawing.Point(264, 108);
-            this.calcPB.Name = "calcPB";
-            this.calcPB.Size = new System.Drawing.Size(144, 23);
-            this.calcPB.TabIndex = 17;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -477,10 +510,11 @@
             this.Controls.Add(this.tabControl1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SupervisorCalc.Properties.Settings.Default, "Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = global::SupervisorCalc.Properties.Settings.Default.Location;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "LTC2909";
+            this.Text = "Supervisor calculator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
@@ -531,9 +565,11 @@
         private System.Windows.Forms.Button btnRunStop;
         private System.Windows.Forms.TextBox seriestb;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox resultsTb;
         private System.ComponentModel.BackgroundWorker CalcResWorker;
         private System.Windows.Forms.ProgressBar calcPB;
+        private SourceGrid.Grid grid1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }
 

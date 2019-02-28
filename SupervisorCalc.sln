@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupervisorCalc", "Superviso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{66D2201F-5459-48EE-A10A-F501DE5408FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGrid", "SourceGrid\SourceGrid.csproj", "{2A5A1657-DBA8-4117-8E2A-9F1236ACE9E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66D2201F-5459-48EE-A10A-F501DE5408FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5A1657-DBA8-4117-8E2A-9F1236ACE9E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A5A1657-DBA8-4117-8E2A-9F1236ACE9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A5A1657-DBA8-4117-8E2A-9F1236ACE9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A5A1657-DBA8-4117-8E2A-9F1236ACE9E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
