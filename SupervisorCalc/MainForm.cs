@@ -98,12 +98,6 @@ namespace SupervisorCalc
             System.Diagnostics.Process.Start("mailto:yakhontov@gmail.com");
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            seriestb.Clear();
-            seriestb.Text = ResistorSeries.E192();
-        }
-
         double maxUAtStart = 0;
         private void btnRunStop_Click(object sender, EventArgs e)
         {
@@ -249,9 +243,22 @@ namespace SupervisorCalc
             //////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
-        private void resultsTb_DoubleClick(object sender, EventArgs e)
+        private void buttonReset_Click(object sender, EventArgs e)
         {
-            tabControl1.TabIndex = 0;
+            seriestb.Clear();
+            if (((Control)sender).Tag == null)
+                return;
+            int i = Convert.ToInt32(((Control)sender).Tag);
+            switch(i)
+            {
+                case 3: seriestb.Text = ResistorSeries.E3(); break;
+                case 6: seriestb.Text = ResistorSeries.E6(); break;
+                case 12: seriestb.Text = ResistorSeries.E12(); break;
+                case 24: seriestb.Text = ResistorSeries.E24(); break;
+                case 48: seriestb.Text = ResistorSeries.E48(); break;
+                case 96: seriestb.Text = ResistorSeries.E96(); break;
+                case 192: seriestb.Text = ResistorSeries.E192(); break;
+            }
         }
     }
 }
